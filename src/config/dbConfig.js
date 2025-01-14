@@ -1,16 +1,10 @@
 const mongoose = require("mongoose");
+require("dotenv").config(); // Load biến môi trường từ .env
 
 async function connect() {
-  const connectionParams = {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  };
-
   try {
-    // Use the MONGO_URI environment variable from the .env file
-    await mongoose.connect(
-      "mongodb+srv://binhtayfood:binhtayfoodtool@binhtayfood.imdlw.mongodb.net/EnglishElevate"
-    );
+    // Sử dụng biến MONGO_URI từ tệp .env
+    await mongoose.connect(process.env.MONGO_URI);
     console.log("Database connected successfully");
   } catch (error) {
     console.log("Database connection error:", error);
